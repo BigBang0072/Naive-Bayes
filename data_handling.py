@@ -42,7 +42,7 @@ def get_example_and_label(filepath,split_factor):
 
     #Creating the delimiters to split the string
     #we wont remove the ?,! since they could convey certain emotion
-    delimeter=",|-| |;|\.|\(|\)|\n|\"|:|'|/|&|`|[|]"
+    delimeter=",|-| |;|\.|\(|\)|\n|\"|:|'|/|&|`|[|]|\{|\}"
 
     #Reading the file line by line
     print("Opening the datafile in read mode")
