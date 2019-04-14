@@ -106,7 +106,7 @@ def get_example_and_label(filepath,split_factor):
         total_word=0
         for key,value in sorted_bag:
             if(value[0]+value[1]<9):
-                print("word: {}\t count: {}".format(key,value))
+                # print("word: {}\t count: {}".format(key,value))
                 total_word+=1
         print("Total less frequent words:",total_word)
 

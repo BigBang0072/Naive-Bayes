@@ -24,7 +24,8 @@ class NaiveBayes():
         DESCRIPTION:
             The constructor for this class.
         '''
-        print("\n\nCustomizing the classifier for your dataset")
+        print("\n\n#############################################")
+        print("Customizing the classifier for your dataset")
         print("Assigning the training attributes to class members")
         #initializing the training datset
         self.total_pos=dataset[0]
@@ -110,12 +111,13 @@ class NaiveBayes():
         true_neg=0
 
         #Initializing the dataset based on the mode
+        print("\n#############################################")
         dataset=None
         if(mode=="train"):
-            print("\nEvaluating the train dataset")
+            print("Evaluating the train dataset")
             dataset=self.train_dataset
         else:
-            print("\nEvalauting the test dataset")
+            print("Evalauting the test dataset")
             dataset=self.test_dataset
 
         #Now iterating over the examples
@@ -123,10 +125,10 @@ class NaiveBayes():
             #Retreiving the labels and review from the example
             label=example[0]
             review=example[1]
-            print("LABEL: ",label)
+            # print("LABEL: ",label)
             #Evaluating the review
             eval=self.evaluate_review(review)
-            print("PREDICTED: {}\n".format(eval))
+            # print("PREDICTED: {}\n".format(eval))
 
             if(label==0 and eval==0):
                 true_pos+=1;
@@ -137,6 +139,8 @@ class NaiveBayes():
             elif(label==1 and eval==1):
                 true_neg+=1
         #Printing the confusion matrix and accuracy
+        self.print_eval_metric(true_pos,false_neg,false_pos,true_neg)
+        print("#############################################")
 
     #Function to evaluate the world of review from learned params
     def evaluate_review(self,review):
@@ -167,12 +171,12 @@ class NaiveBayes():
         norm = rev_pos_prob+rev_neg_prob+1e-40
         #print(norm)
         if(rev_pos_prob>rev_neg_prob):
-            print("pos_rev: un_prob:{} \t prob:{}".format(\
-                                    rev_pos_prob,rev_pos_prob/norm))
+            # print("pos_rev: un_prob:{} \t prob:{}".format(\
+                                    # rev_pos_prob,rev_pos_prob/norm))
             return 0
         else:
-            print("neg_rev: un_prob:{} \t prob:{}".format(\
-                                    rev_neg_prob,rev_neg_prob/norm))
+            # print("neg_rev: un_prob:{} \t prob:{}".format(\
+                                    # rev_neg_prob,rev_neg_prob/norm))
             return 1
 
     #Function to print the evaluation metric
@@ -193,12 +197,12 @@ class NaiveBayes():
                     (TP)/(TP+FN)
         '''
         print("\nConfuction Matrix:")
-        print("\tprediction-0\tprediction-1")
+        print("\tpred-0\tpred-1")
         print("label-0\t{}\t{}".format(true_pos,false_neg))
         print("label-1\t{}\t{}\n".format(false_pos,true_neg))
 
-        print("Accuracy: {}\n".format(float(true_pos+true_neg))/\
-                            float(true_pos+false_neg+false_pos+true_neg))
+        print("Accuracy: {}\n".format(float(true_pos+true_neg)/\
+                            float(true_pos+false_neg+false_pos+true_neg)))
 
         print("Precision: {}\n".format(float(true_pos)/\
                             float(true_pos+false_pos)))
@@ -214,4 +218,7 @@ if __name__=="__main__":
 
     #Now creating the NaiveBayes classifier object
     myBayes=NaiveBayes(dataset)
+    #Testing on training dataset
     myBayes.evaluate_accuracy(mode="train")
+    #Testing on testing dataset
+    myBayes.evaluate_accuracy(mode="test")
