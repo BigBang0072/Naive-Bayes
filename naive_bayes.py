@@ -174,7 +174,7 @@ class NaiveBayes():
             # print("pos_rev: un_prob:{} \t prob:{}".format(\
                                     # rev_pos_prob,rev_pos_prob/norm))
             return 0
-        else:
+        elif(rev_pos_prob<rev_neg_prob):
             # print("neg_rev: un_prob:{} \t prob:{}".format(\
                                     # rev_neg_prob,rev_neg_prob/norm))
             return 1
