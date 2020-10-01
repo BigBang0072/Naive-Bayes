@@ -209,6 +209,9 @@ class NaiveBayes():
 
         print("Recall: {}\n".format(float(true_pos)/\
                             float(true_pos+false_neg)))
+        
+        print("F1 score: {}\n".format(float(true_pos)/\
+                              float(true_pos+float(false_neg+false_pos)/2)))
 
 
 if __name__=="__main__":
